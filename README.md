@@ -42,7 +42,7 @@ All 7B decoder models provided here come with 32 layers, each with 32 heads per 
 
 Voter selection is implemented in `discovery.py`. Each model and dataset combination comes with 30 randomly drawn samples from their respective official training splits, excluding TruthfulQA which uses Arc-Easy's train split. Running `discovery.py` enables head indices to be identified from the ground up given a quantile threshold and set of samples. These head indices can be saved and re-used for inference to achieve the same validation accuracy. Alternatively, any other arbitrary samples can be used in this script to discover a new set of heads with different validation results. Note that Voter selection is only performed once for each dataset.
 
-# Finetuning with Head Norms
+# Finetuning with NoVo
 All credits to [Ghosal et al.](https://aclanthology.org/2022.emnlp-main.691/) for the original fine-tuning codebase and reproduced results for TEAMs and the original standard fine-tuning results for their respective datasets. Follow the step-by-step instructions below to start fine-tuning with head norms.
 
 1.  Clone the [TEAMs project on GitHub](https://github.com/declare-lab/TEAM/commit/2da79aef133808b8db67536ae5ca7c7847982573) to your machine.
