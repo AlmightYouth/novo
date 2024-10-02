@@ -4,7 +4,7 @@ from typing import Union, List, Tuple
 from tqdm import tqdm
 from transformers import AutoTokenizer, PreTrainedTokenizerBase
 from models.custom_deberta import DebertaV2Model
-from normie.utils import pickle_rw, strip_add_fullstop
+from utils import pickle_rw, strip_add_fullstop
 import torch
 from torch import Tensor
 from torch.utils.data import DataLoader, TensorDataset

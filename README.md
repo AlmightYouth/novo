@@ -32,7 +32,7 @@ The `data/datasets.p` file contains the validation split of the corresponding da
 8.  <ins>CICERO</ins> (`cicero` or `cicero2`) by [Ghosal Et Al.](https://aclanthology.org/2022.acl-long.344/) available [on GitHub](https://github.com/declare-lab/TEAM).
 
 
-# Voter Selection
+# Norm Selection
 ![Voter Selection](figures/voter_selection.png)
 Quickstart from top-level directory
 ```
@@ -40,7 +40,7 @@ python discovery.py --model mistral-7b-it --dataset tqa
 ```
 All 7B decoder models provided here come with 32 layers, each with 32 heads per attention sublayer, for a total of 1024 heads throughout the network. Using indices between 0 to 1023 is a convenient way to locate and identify heads. Which layer a head belongs to can be calculated by floor diving its index with the number of layers (32 in this case). Head indices are already provides in `heads.p` to facilliate inference. Full list of models and datasets available in [the previous section](#zero-shot-mcq-answering-with-novo).
 
-Voter selection is implemented in `discovery.py`. Each model and dataset combination comes with 30 randomly drawn samples from their respective official training splits, excluding TruthfulQA which uses Arc-Easy's train split. Running `discovery.py` enables head indices to be identified from the ground up given a quantile threshold and set of samples. These head indices can be saved and re-used for inference to achieve the same validation accuracy. Alternatively, any other arbitrary samples can be used in this script to discover a new set of heads with different validation results. Note that Voter selection is only performed once for each dataset.
+Norm Selection is implemented in `discovery.py`. Each model and dataset combination comes with 30 randomly drawn samples from their respective official training splits, excluding TruthfulQA which uses Arc-Easy's train split. Running `discovery.py` enables head indices to be identified from the ground up given a quantile threshold and set of samples. These head indices can be saved and re-used for inference to achieve the same validation accuracy. Alternatively, any other arbitrary samples can be used in this script to discover a new set of heads with different validation results. Note that Norm Selection is only performed once for each dataset.
 
 # Finetuning with NoVo
 All credits to [Ghosal et al.](https://aclanthology.org/2022.emnlp-main.691/) for the original fine-tuning codebase and reproduced results for TEAMs and the original standard fine-tuning results for their respective datasets. Follow the step-by-step instructions below to start fine-tuning with head norms.

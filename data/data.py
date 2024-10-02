@@ -3,7 +3,7 @@ from typing import Tuple,List, Dict
 from os.path import join as osjoin
 import sys
 sys.path.append("..")
-from normie.utils import pickle_rw
+from utils import pickle_rw
 
 def get_dataset(name : str) -> Tuple[List[Dict], str]:
 
