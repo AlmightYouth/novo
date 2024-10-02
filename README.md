@@ -12,7 +12,7 @@ Quickstart from top-level directory
 ```
 python main.py --model mistral-7b-it --dataset tqa
 ```
-Zero-shot MCQ results reported in our paper can be reproduced with `main.py`. Simply select the desired model and dataset to start inference. Depending on your machine and dataset size, inference will take anywhere between a minute to over an hour. After inference is completed, the validation accuracy, model and dataset name will be printed out.
+Zero-shot MCQ results reported in the paper can be reproduced with `main.py`. Simply select the desired model and dataset to start inference. Depending on the machine and dataset size, inference will take anywhere between a minute to over an hour. After inference is completed, the validation accuracy, model and dataset name will be printed out.
 
 __Models__  
 [Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) (`mistral-7b-it`), [Llama2-7B](https://huggingface.co/meta-llama/Llama-2-7b-hf) (`llama2-7b`), [Llama2-7B-Chat](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf) (`llama2-7b-chat`), and [Vicuna-7B-v1.5](https://huggingface.co/lmsys/vicuna-7b-v1.5) (`vicuna-7b`) are all available for inference. Their weights can be downloaded from huggingface via   
@@ -21,7 +21,7 @@ from transformers import AutoModelForCausalLM
 _ = AutoModelForCausalLM.from_pretrained('mistralai/Mistral-7B-Instruct-v0.2')
 ```  
 __Datasets__  
-The `data/datasets.p` file contains the validation split of the corresponding datasets below to facilitate the reproduction of the results published in our paper.
+The `data/datasets.p` file contains the validation split of the corresponding datasets below to facilitate the reproduction of the results.
 1.  <ins>CommonsenseQA-2.0</ins> (`csqa2`) by [Talmor Et Al.](https://arxiv.org/abs/2201.05320) available [on GitHub](https://allenai.github.io/csqa2/).
 2.  <ins>QASC</ins> (`qasc`) by [Khot Et Al.](https://arxiv.org/abs/1910.11473) available [on Huggingface](https://huggingface.co/datasets/allenai/qasc).
 3.  <ins>SWAG</ins> (`swag`) by [Zellers Et Al.](https://arxiv.org/abs/1808.05326) available [here](https://rowanzellers.com/swag/).
@@ -47,8 +47,8 @@ All credits to [Ghosal et al.](https://aclanthology.org/2022.emnlp-main.691/) fo
 
 1.  Clone the [TEAMs project on GitHub](https://github.com/declare-lab/TEAM/commit/2da79aef133808b8db67536ae5ca7c7847982573) to your machine.
 2.  Follow their instructions to download and process the datasets to get started on training.
-3.  Once you are are able to start training, replace the default DeBERTa from huggingface with our customised one at `models/custom_deberta.py`. This model collates and feeds only heads norms to the classification layer.
-4.  Set the learning rate and epoch number as defined in our paper.
+3.  Replace the default DeBERTa from huggingface with a customised one at `models/custom_deberta.py`. This model collates and feeds only heads norms to the classification layer.
+4.  Set the learning rate and epoch number as defined in the paper.
 5.  Before initialising the dataloader, undo all binary reformulations required for TEAMs. The head norm fine-tuning approach reverts back to the original N class labels, with sequences padded and batched. Sequences may be embedding and fed into the model with the canonical format `(bsz, seq_len, fdim)`, but the classification layer expects input shape `(real_bsz, N, seq_len, total_heads)`. In this case `bsz` can be unrolled to `real_bsz * N`.
 6.  Start training and save all model weights after the set number of epochs.
 7.  Submit test predictions to the [AllenAI Leaderboard](https://leaderboard.allenai.org/). Test predictions with finetuned DeBERTa can be produced with `test.py`.
