@@ -1,5 +1,7 @@
 # Introduction
-Norm Voting (NoVo) for reducing hallucinations in multiple-choice question answering. 
+ICLR 2025: Norm Voting (NoVo) for reducing hallucinations in multiple-choice question answering. 
+
+Link to poster: https://iclr.cc/virtual/2025/poster/27716
 
 ![Overview of NoVo for zero-shot MCQ](figures/overview.png)
 
